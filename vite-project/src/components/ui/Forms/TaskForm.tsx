@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Priority, TaskProps } from "../../../types/Task"
-import Cancel from "../Buttons/Cancel"
-import Sumbit from "../Buttons/Submit"
+import Cancel from "../Buttons/CancelButton"
+import Sumbit from "../Buttons/SubmitButton"
 
 function TaskForm() {
     const [title, setTitle] = useState("")
