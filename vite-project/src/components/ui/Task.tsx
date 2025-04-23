@@ -1,7 +1,7 @@
 import PriorityFrame from "./PriorityFrame"
 import DueFrame from "./DueFrame"
 import Complete from "./Complete"
-import { TaskProps } from "../types/Task"
+import { TaskProps } from "../../types/Task"
 
 function Task(task: TaskProps) {
     return (

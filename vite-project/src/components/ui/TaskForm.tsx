@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { Priority, TaskProps } from "../types/Task"
+import { Priority, TaskProps } from "../../types/Task"
 
-function TaskForm({setTasksList}: {setTasksList: React.Dispatch<React.SetStateAction<TaskProps[]>>}) {
+function TaskForm() {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [priority, setPriority] = useState("low")
@@ -22,10 +22,7 @@ function TaskForm({setTasksList}: {setTasksList: React.Dispatch<React.SetStateAc
             createdAt: currentDate,
             updatedAt: currentDate
         }
-        setTasksList((prevTasks) => {
-            const newTasks = [...prevTasks, createdTask]
-            return newTasks
-        })
+        console.log(createdTask)
     }
 
     const setTitleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

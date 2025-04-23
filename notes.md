@@ -59,13 +59,20 @@ pnpm run dev
 https://tailwindcss.com/docs/installation/using-vite
 
 ## Gestion des événements
+
 preventDefault : empêche le comportement par défaut de l'événement (ex: empêcher le rechargement de la page lors de la validation d'un formulaire)
 
-## useState
+## Hooks
+
+- Tous les hooks doivent être utilisés au niveau supérieur d'un composant fonctionnel
+
+### useState
+
 - Permet de gérer l'état d'un composant fonctionnel
-Ex : 
+  Ex :
+
 ```javascript
-import { useState } from 'react';
+import { useState } from "react";
 
 function Counter() {
   const [count, setCount] = useState(0);
@@ -79,3 +86,23 @@ function Counter() {
 }
 ```
 
+### useEffect
+
+- Permet de gérer les effets de bord (effets secondaires) : appel API, manipulation du DOM, etc.
+- S'exécute après le rendu du composant si le tableau de dépendances est vide
+- Est composé de 2 arguments : un callback et un tableau de dépendances
+
+### useRef
+
+- Permet de créer une référence mutable qui persiste entre les rendus
+
+### useReducer
+
+- Utilisé pour les objets d'état complexes ou lorsque la variable doit être disponible dans plusieurs composants (ex: thème sombre)
+
+## React Router v7
+### Méthode Framework
+### Méthode Data
+### Méthode déclarative
+- **Routes** : Définit les routes de l'application
+- **Route** : Définit une route spécifique

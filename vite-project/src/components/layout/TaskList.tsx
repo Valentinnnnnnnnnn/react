@@ -1,5 +1,5 @@
-import Task from "./Task"
-import { TaskProps } from "../types/Task"
+import Task from "../ui/Task"
+import { TaskProps } from "../../types/Task"
 
 function TaskList({ tasks }: { tasks: TaskProps[] }) {
     return (
