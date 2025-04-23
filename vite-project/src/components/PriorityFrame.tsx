@@ -1,4 +1,4 @@
-import { Priority } from "./Task"
+import { Priority } from "../types/Task";
 
 function PriorityFrame({priority}: {priority: string}) {
     return (

@@ -1,9 +1,11 @@
 import './App.css'
-import { Priority } from './components/Task'
+import { TaskProps, Priority } from './types/Task'
+import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
+import { useState } from "react"
 
 function App() {
-  const taskExemple = {
+  const taskExemple : TaskProps = {
     dbId: '1',
     title: 'Task 1',
     description: 'This is a task',
@@ -14,10 +16,18 @@ function App() {
     updatedAt: new Date(),
   }
 
+  const tasks = [taskExemple, taskExemple, taskExemple, taskExemple, taskExemple, taskExemple]
+
+  const [tasksList, setTasksList] = useState(tasks)
+
   return (
     <>
       <TaskList
-        tasks={[taskExemple, taskExemple, taskExemple, taskExemple, taskExemple, taskExemple]}
+        tasks={tasksList}
+      />
+
+      <TaskForm
+        setTasksList={setTasksList}
       />
     </>
   )

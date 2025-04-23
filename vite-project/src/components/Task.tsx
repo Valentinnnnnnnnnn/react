@@ -1,23 +1,7 @@
 import PriorityFrame from "./PriorityFrame"
 import DueFrame from "./DueFrame"
 import Complete from "./Complete"
-
-export enum Priority {
-    Low = 'low',
-    Medium = 'medium',
-    High = 'high'
-}
-
-export interface TaskProps {
-    dbId: string
-    title: string
-    description?: string
-    completed: boolean
-    dueDate?: Date
-    priority: Priority
-    createdAt: Date
-    updatedAt: Date
-}
+import { TaskProps } from "../types/Task"
 
 function Task(task: TaskProps) {
     return (
