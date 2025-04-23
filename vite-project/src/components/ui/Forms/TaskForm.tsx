@@ -1,5 +1,7 @@
 import { useState } from "react"
-import { Priority, TaskProps } from "../../types/Task"
+import { Priority, TaskProps } from "../../../types/Task"
+import Cancel from "../Buttons/Cancel"
+import Sumbit from "../Buttons/Submit"
 
 function TaskForm() {
     const [title, setTitle] = useState("")
@@ -89,12 +91,8 @@ function TaskForm() {
                 />
             </div>
 
-            <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-                Add Task
-            </button>
+            <Sumbit />
+            <Cancel />
         </form>
     )
 }

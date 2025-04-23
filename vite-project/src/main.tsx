@@ -1,8 +1,8 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { Routes, Route, BrowserRouter } from 'react-router'
-import Tasks from './pages/tasks'
-import CreateTask from './pages/createTask'
+import Tasks from './pages/Tasks'
+import CreateTask from './pages/CreateTask'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>

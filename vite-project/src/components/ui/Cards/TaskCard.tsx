@@ -1,7 +1,7 @@
-import PriorityFrame from "./PriorityFrame"
-import DueFrame from "./DueFrame"
-import Complete from "./Complete"
-import { TaskProps } from "../../types/Task"
+import PriorityFrame from "../Frames/PriorityFrame"
+import DueFrame from "../Frames/DueFrame"
+import Complete from "../Buttons/Complete"
+import { TaskProps } from "../../../types/Task"
 
 function Task(task: TaskProps) {
     return (
@@ -29,6 +29,7 @@ function Task(task: TaskProps) {
                 <div className="absolute bottom-0 right-0 p-4">
                     <Complete 
                         completed={task.completed}
+                        taskId={task.dbId}
                     />
                 </div>
             </div>
