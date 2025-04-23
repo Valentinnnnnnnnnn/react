@@ -1,27 +1,29 @@
+import checkIcon from "../../../assets/icons/checkIcon.svg"
+
+
 function Complete({completed, taskId}: {completed: boolean, taskId: string}) {
     const checkHandler = async () => {
-        const url = `https://api.ex.com/tasks/toggle/${taskId}`
-        console.log(url)
-    }
-    const uncheckHandler = async () => {
-        const url = `https://api.ex.com/tasks/toggle/${taskId}`
-        console.log(url)
+        console.log(`Task ${taskId} completed status: ${completed}`)
+        
     }
 
     return (
         <>
-            {
-                !completed ? (
-                    <button onClick={checkHandler}>
-                        <input type="checkbox" checked={false} readOnly />
-                        À faire
-                    </button>
-                ) : (
-                    <button onClick={uncheckHandler}>
-                        <span style={{ fontSize: '1.5em', color: 'green' }}>✓ Fait</span>
-                    </button>
-                )
-            }
+        <button
+            onClick={checkHandler}
+            className={`
+                flex items-center justify-center
+                w-6 h-6 rounded-full border-2
+                transition-colors duration-150
+                ${completed
+                ? 'bg-amber-100 border-amber-100 text-white'
+                : 'border-gray-300 bg-white hover:bg-gray-100'}
+            `}
+            aria-label={completed ? 'Marquer comme non terminée' : 'Marquer comme terminée'}
+            >
+            {completed && <img src={checkIcon} alt="check" width={12} />}
+        </button>
+
         </>
     )
 }

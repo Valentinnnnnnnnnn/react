@@ -57,8 +57,8 @@ const taskExemple5: TaskProps = {
 
 const taskExemple6: TaskProps = {
   dbId: '6',
-  title: 'Optimisation des requêtes',
-  description: 'Réduire le temps d\'exécution de la base de données.',
+  title: 'Optimisation des requêtesOptimisation des requêtesOptimisation des requêtesOptimisation des requêtesOptimisation des requêtes',
+  description: 'Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.Réduire le temps d\'exécution de la base de données.',
   completed: true,
   priority: Priority.High,
   createdAt: new Date('2023-07-01T08:00:00Z'),

@@ -1,14 +1,15 @@
 import { Priority } from "../../../types/Task";
 
-function PriorityFrame({priority}: {priority: string}) {
+function PriorityFrame({priority, isComplete}: {priority: string, isComplete: boolean}) {
     return (
         <>
             <p className={
-              priority === Priority.High ? "bg-red-600" :
-              priority === Priority.Medium ? "bg-yellow-600" :
-              "bg-green-600"
+              isComplete ? "text-gray-500" :
+              priority === Priority.High ? "text-red-600" :
+              priority === Priority.Medium ? "text-yellow-600" :
+              "text-green-600"
             }>
-              {priority}
+              Priority : {priority} 
             </p>
         </>
     )
