@@ -1,5 +1,5 @@
 import Task from "../ui/Cards/TaskCard"
-import { TaskProps } from "../../types/Task"
+import { TaskProps } from "../../types/TaskType"
 
 function TaskList({ tasks }: { tasks: TaskProps[] }) {
     return (

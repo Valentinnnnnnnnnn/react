@@ -1,7 +1,7 @@
 import PriorityFrame from "../Frames/PriorityFrame"
 import DueFrame from "../Frames/DueFrame"
 import Complete from "../Buttons/CompleteButton"
-import { TaskProps } from "../../../types/Task"
+import { TaskProps } from "../../../types/TaskType"
 import Delete from "../Buttons/DeleteButton"
 import Edit from "../Buttons/EditButton"
 // TODO : Séparer les boutons de la carte

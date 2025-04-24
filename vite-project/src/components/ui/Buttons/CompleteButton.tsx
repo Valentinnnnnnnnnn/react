@@ -8,7 +8,6 @@ function Complete({completed, taskId}: {completed: boolean, taskId: string}) {
     }
 
     return (
-        <>
         <button
             onClick={checkHandler}
             className={`
@@ -23,8 +22,6 @@ function Complete({completed, taskId}: {completed: boolean, taskId: string}) {
             >
             {completed && <img src={checkIcon} alt="check" width={12} />}
         </button>
-
-        </>
     )
 }
 

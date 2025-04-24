@@ -2,6 +2,10 @@
 
 Bibliothèque javaScript pour construire des interfaces utilisateur
 
+## Termes
+- **Store** : Contexte global de l'application, permet de partager des données entre les composants sans avoir à les passer en props
+- **Provider** : Composant qui permet de fournir un service
+
 ## Caractéristiques
 
 - Déclaratif

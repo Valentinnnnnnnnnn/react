@@ -1,4 +1,4 @@
-import { Priority } from "../../../types/Task";
+import { Priority } from "../../../types/TaskType";
 
 function PriorityFrame({priority, isComplete}: {priority: string, isComplete: boolean}) {
     return (

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Priority, TaskProps } from "../../../types/Task"
+import { Priority, TaskProps } from "../../../types/TaskType"
 import Cancel from "../Buttons/CancelButton"
 import Sumbit from "../Buttons/SubmitButton"
 

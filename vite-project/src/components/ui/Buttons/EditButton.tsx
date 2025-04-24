@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 function Edit({taskId}: {taskId: string}) {
     return (
-        <Link to={"/edit/" + taskId}>
+        <Link to={"tasks/edit/" + taskId}>
             
         </Link>
     );
