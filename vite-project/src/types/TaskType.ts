@@ -1,8 +1,4 @@
-export enum Priority {
-    Low = 'low',
-    Medium = 'medium',
-    High = 'high'
-}
+import { Priority } from './priorityType'
 
 export interface TaskProps {
     dbId: string

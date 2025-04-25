@@ -1,4 +1,5 @@
-import { Priority, TaskProps } from "../types/TaskType";
+import { TaskProps } from "../types/TaskType";
+import { Priority } from "../types/priorityType";
 
 const taskExemple1: TaskProps = {
   dbId: '1',

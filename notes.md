@@ -110,3 +110,4 @@ function Counter() {
 ### Méthode déclarative
 - **Routes** : Définit les routes de l'application
 - **Route** : Définit une route spécifique
+
