@@ -1,4 +1,4 @@
-import FilterButton from "../Buttons/ShowCompleteButton"
+import FilterButton from "../Buttons/FilterButton"
 import { PriorityColor } from "../../../types/priorityType"
 
 const FiltersFrame = () => {
