@@ -1,27 +1,23 @@
 import React, { useState } from "react"
 import checkIcon from "../../../assets/icons/checkIcon.svg"
-
-export interface FilterButtonProps {
-    id: string
-    text: string
-    checkedClasses?: string
-    uncheckedClasses?: string
-    iconWidth?: number
-}
+import { FilterButtonProps } from "../../../types/filterButtonType"
 
 const FilterButton: React.FC<FilterButtonProps> = ({
-    id,
     text,
     checkedClasses = "bg-amber-100 border-amber-100 text-white",
     uncheckedClasses = "border-gray-300 bg-white hover:bg-gray-100",
     iconWidth = 12,
+    onInteraction,
 }) => {
     const [checked, setChecked] = useState(false)
 
-    const checkHandler = () => setChecked(prev => !prev)
+    const checkHandler = () => {
+        setChecked(prev => !prev)
+        onInteraction()
+    }
 
     return (
-        <div className="flex items-center" id={id}>
+        <div className="flex items-center">
             <button
                 onClick={checkHandler}
                 className={`flex items-center justify-center
