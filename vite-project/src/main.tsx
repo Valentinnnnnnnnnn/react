@@ -20,7 +20,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="edit/:taskId" element={<Edit />} />
       </Route>
 
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<Navigate to="/login" />} />
       
     </Routes>
   </BrowserRouter>

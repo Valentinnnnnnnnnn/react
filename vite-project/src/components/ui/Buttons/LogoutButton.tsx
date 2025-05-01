@@ -9,12 +9,14 @@ const LogoutButton = () => {
     <Navigate to="/tasks" />
   };
   return (
-    <button
-      onClick={handleLogout}
-      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-    >
-      Logout
-    </button>
+    <div className="w-full flex justify-end">
+      <button
+        onClick={handleLogout}
+        className="bg-red-500 hover:bg-red-700 text-black font-semibold py-3 px-6 rounded-2xl w-40"
+      >
+        Logout
+      </button>
+    </div>
   )
 }
 
