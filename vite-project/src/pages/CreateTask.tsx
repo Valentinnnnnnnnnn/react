@@ -1,11 +1,11 @@
-import TaskForm from "../components/ui/Forms/TaskForm"
+import TaskForm from '../components/ui/Forms/TaskForm'
 
 function CreateTask() {
-    return (
-        <>
-            <TaskForm />
-        </>
-    )   
+  return (
+    <>
+      <TaskForm />
+    </>
+  )
 }
 
 export default CreateTask

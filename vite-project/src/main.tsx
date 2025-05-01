@@ -6,23 +6,22 @@ import CreateTask from './pages/CreateTask'
 import Edit from './pages/EditTask'
 import Login from './pages/Login'
 import MainLayout from './components/layout/MainLayout'
-import { AuthProvider } from './utils/AuthContext'
+import { AuthProvider } from './utils/AuthProvider'
 
 createRoot(document.getElementById('root')!).render(
   <AuthProvider>
-  <BrowserRouter>
-    <Routes>
-      <Route path='/login' element={<Login />} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
 
-      <Route path="/tasks" element={<MainLayout />} >
-        <Route index element={<Tasks />} />
-        <Route path="create" element={<CreateTask />} />
-        <Route path="edit/:taskId" element={<Edit />} />
-      </Route>
+        <Route path="/tasks" element={<MainLayout />}>
+          <Route index element={<Tasks />} />
+          <Route path="create" element={<CreateTask />} />
+          <Route path="edit/:taskId" element={<Edit />} />
+        </Route>
 
-      <Route path="*" element={<Navigate to="/login" />} />
-      
-    </Routes>
-  </BrowserRouter>
-  </AuthProvider>,
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </BrowserRouter>
+  </AuthProvider>
 )

@@ -9,7 +9,7 @@ function Tasks() {
     completed: false,
     low: true,
     medium: true,
-    high: true,
+    high: true
   })
 
   return (
@@ -18,10 +18,7 @@ function Tasks() {
         setFilters={setActiveFilters}
         defaultFilters={activeFilters}
       />
-      <TaskList
-        tasks={tasks}
-        filters={activeFilters}
-      />
+      <TaskList tasks={tasks} filters={activeFilters} />
     </>
   )
 }

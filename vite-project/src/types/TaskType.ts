@@ -1,12 +1,12 @@
 import { Priority } from './priorityType'
 
 export interface TaskProps {
-    dbId: string
-    title: string
-    description?: string
-    completed: boolean
-    dueDate?: Date
-    priority: Priority
-    createdAt: Date
-    updatedAt: Date
+  dbId: string
+  title: string
+  description?: string
+  completed: boolean
+  dueDate?: Date
+  priority: Priority
+  createdAt: Date
+  updatedAt: Date
 }

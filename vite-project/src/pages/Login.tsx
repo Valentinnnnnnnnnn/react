@@ -1,17 +1,15 @@
-import LoginForm from "../components/ui/Forms/LoginForm";
-import { useAuth } from "../hooks/useAuth";
-import { Navigate } from "react-router";
+import LoginForm from '../components/ui/Forms/LoginForm'
+import { useAuth } from '../hooks/useAuth'
+import { Navigate } from 'react-router'
 
 function Login() {
-    const {isAuthenticated} = useAuth();
+  const { isAuthenticated } = useAuth()
 
-    if (isAuthenticated) {
-        return <Navigate to="/tasks" />;
-    }
+  if (isAuthenticated) {
+    return <Navigate to="/tasks" />
+  }
 
-    return (
-        <LoginForm />
-    );
+  return <LoginForm />
 }
 
 export default Login

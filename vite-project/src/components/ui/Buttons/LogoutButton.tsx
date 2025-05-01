@@ -1,13 +1,13 @@
-import { useAuth } from "../../../hooks/useAuth";
-import { Navigate } from "react-router";
+import { useAuth } from '../../../hooks/useAuth'
+import { Navigate } from 'react-router'
 
 const LogoutButton = () => {
-  const { logout } = useAuth();
+  const { logout } = useAuth()
 
   const handleLogout = () => {
-    logout();
-    <Navigate to="/tasks" />
-  };
+    logout()
+    ;<Navigate to="/tasks" />
+  }
   return (
     <div className="w-full flex justify-end">
       <button
