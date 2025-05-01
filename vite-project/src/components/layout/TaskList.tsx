@@ -11,14 +11,14 @@ function TaskList({ tasks, filters }: { tasks: TaskProps[], filters: Filters }) 
         console.log("Filtering tasks with filters:", filters);
         setFilteredTasks(
             tasks.filter((task) => {
-            if (!filters.completed && !task.completed) return false;
+            if (!filters.completed && task.completed) return false;
             switch (task.priority) {
                 case Priority.Low:
-                return !filters.low;
+                return filters.low;
                 case Priority.Medium:
-                return !filters.medium;
+                return filters.medium;
                 case Priority.High:
-                return !filters.high;
+                return filters.high;
                 default:
                 return false;
             }

@@ -16,6 +16,7 @@ function Tasks() {
     <>
       <FiltersFrame
         setFilters={setActiveFilters}
+        defaultFilters={activeFilters}
       />
       <TaskList
         tasks={tasks}

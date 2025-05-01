@@ -4,4 +4,5 @@ export interface FilterButtonProps {
     uncheckedClasses?: string
     iconWidth?: number
     onInteraction: () => void
+    defaultChecked?: boolean
 }

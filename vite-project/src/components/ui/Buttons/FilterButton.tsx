@@ -8,8 +8,9 @@ const FilterButton: React.FC<FilterButtonProps> = ({
     uncheckedClasses = "border-gray-300 bg-white hover:bg-gray-100",
     iconWidth = 12,
     onInteraction,
+    defaultChecked,
 }) => {
-    const [checked, setChecked] = useState(false)
+    const [checked, setChecked] = useState(defaultChecked)
 
     const checkHandler = () => {
         setChecked(prev => !prev)

@@ -2,7 +2,7 @@ import FilterButton from "../Buttons/FilterButton"
 import { PriorityColor } from "../../../types/priorityType"
 import { Filters } from "../../../types/filtersType"
 
-const FiltersFrame = ({setFilters}: {setFilters: React.Dispatch<React.SetStateAction<Filters>>}) => {
+const FiltersFrame = ({setFilters, defaultFilters}: {setFilters: React.Dispatch<React.SetStateAction<Filters>>, defaultFilters:Filters}) => {
   return (
     <>
         <div className="justify-center gap:5 pt-10 flex flex-col sm:flex-row sm:flex-wrap sm:gap-10">
@@ -16,6 +16,7 @@ const FiltersFrame = ({setFilters}: {setFilters: React.Dispatch<React.SetStateAc
                     }))
                   }
                 }
+                defaultChecked={defaultFilters.completed}
             />
 
             <FilterButton
@@ -28,6 +29,7 @@ const FiltersFrame = ({setFilters}: {setFilters: React.Dispatch<React.SetStateAc
                       low: !prevFilters.low,
                     }))
                   }
+                defaultChecked={defaultFilters.low}
             />
 
             <FilterButton
@@ -40,6 +42,7 @@ const FiltersFrame = ({setFilters}: {setFilters: React.Dispatch<React.SetStateAc
                       medium: !prevFilters.medium,
                     }))
                   }
+                defaultChecked={defaultFilters.medium}
             />
 
             <FilterButton
@@ -52,6 +55,7 @@ const FiltersFrame = ({setFilters}: {setFilters: React.Dispatch<React.SetStateAc
                       high: !prevFilters.high,
                     }))
                   }
+                defaultChecked={defaultFilters.high}
             />
         </div>
     </>
