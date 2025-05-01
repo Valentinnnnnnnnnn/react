@@ -1,12 +1,9 @@
 import PriorityFrame from "../Frames/PriorityFrame"
 import DueFrame from "../Frames/DueFrame"
 import Complete from "../Buttons/CompleteButton"
-import { TaskProps } from "../../../types/TaskType"
+import { TaskProps } from "../../../types/taskType"
 import Delete from "../Buttons/DeleteButton"
 import Edit from "../Buttons/EditButton"
-// TODO : Séparer les boutons de la carte
-import trashIcon from "../../../assets/icons/trashIcon.svg"
-import editIcon from "../../../assets/icons/editIcon.svg"
 
 function Task(task: TaskProps) {
     return (
@@ -31,20 +28,8 @@ function Task(task: TaskProps) {
                     <PriorityFrame priority={task.priority} isComplete={task.completed} />
                 </div>
                 <div className="flex space-x-3">
-                    <button
-                        onClick={() => console.log(task.dbId)}
-                        className="p-2 hover:bg-gray-100 rounded-full"
-                        aria-label="Modifier"
-                    >
-                        <img src={editIcon} alt="Edit Icon" className="w-5 h-5" />
-                    </button>
-                    <button
-                        onClick={() => console.log(task.dbId)}
-                        className="p-2 hover:bg-gray-100 rounded-full"
-                        aria-label="Supprimer"
-                    >
-                        <img src={trashIcon} alt="Trash Icon" className="w-5 h-5" />
-                    </button>
+                    <Edit taskId={task.dbId}/>
+                    <Delete taskId={task.dbId} />
                 </div>
             </div>
         </div>

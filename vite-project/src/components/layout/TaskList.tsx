@@ -1,8 +1,8 @@
 import Task from "../ui/Cards/TaskCard"
-import { TaskProps } from "../../types/TaskType"
 import { useState, useEffect } from 'react';
 import { Filters } from "../../types/filtersType";
 import { Priority } from "../../types/priorityType";
+import { TaskProps } from "../../types/taskType";
 
 function TaskList({ tasks, filters }: { tasks: TaskProps[], filters: Filters }) {
     const [filteredTasks, setFilteredTasks] = useState<TaskProps[]>(tasks);
@@ -11,7 +11,7 @@ function TaskList({ tasks, filters }: { tasks: TaskProps[], filters: Filters }) 
         console.log("Filtering tasks with filters:", filters);
         setFilteredTasks(
             tasks.filter((task) => {
-            if (filters.completed && !task.completed) return false;
+            if (!filters.completed && !task.completed) return false;
             switch (task.priority) {
                 case Priority.Low:
                 return !filters.low;
