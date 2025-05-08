@@ -1,7 +1,7 @@
 import { Priority } from './priorityType'
 
 export interface TaskProps {
-  dbId: string
+  _id: string
   title: string
   description?: string
   completed: boolean

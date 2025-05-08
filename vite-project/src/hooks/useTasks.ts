@@ -50,7 +50,7 @@ export const useTodos = () => {
   const deleteTodo = async (id: string) => {
     try {
       await TodoAPI.delete(id);
-      setTodos(prevTodos => prevTodos.filter(todo => todo.dbId !== id));
+      setTodos(prevTodos => prevTodos.filter(todo => todo._id !== id));
     } catch (err) {
       console.error('Error deleting todo:', err);
       setError('Impossible de supprimer la tâche');
@@ -61,13 +61,13 @@ export const useTodos = () => {
   // Basculer l'état complété d'un todo
   const toggleTodoCompleted = async (id: string) => {
     try {
-      const todo = todos.find(t => t.dbId === id);
+      const todo = todos.find(t => t._id === id);
       if (!todo) throw new Error('Todo not found');
       
       const updatedTodo = await TodoAPI.toggleComplete(id);
       
       setTodos(prevTodos => 
-        prevTodos.map(todo => todo.dbId === id ? updatedTodo : todo)
+        prevTodos.map(todo => todo._id === id ? updatedTodo : todo)
       );
       
       return updatedTodo;
@@ -79,7 +79,7 @@ export const useTodos = () => {
   };
 
   return { 
-    todos, 
+    tasks: todos, 
     loading, 
     error, 
     fetchTodos, 

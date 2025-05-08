@@ -1,13 +1,10 @@
-import dotenv from 'dotenv';
 import { TaskProps } from '../types/taskType';
 import { TaskFormType } from '../types/taskFormType';
 
-dotenv.config();
-
-const API_URL = process.env.API_CUSTOM_URL;
-
+const API_URL = import.meta.env.VITE_API_URL;
+console.log('API_URL:', API_URL);
 if (!API_URL) {
-  throw new Error("API_CUSTOM_URL is not defined in the .env file");
+  throw new Error("VITE_API_URL is not defined in the environment variables");
 }
 
 // Timeout helper pour simuler la latence réseau

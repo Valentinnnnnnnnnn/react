@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import TaskList from '../components/layout/TaskList'
-import { tasks } from '../components/loadTasks'
 import FiltersFrame from '../components/ui/Frames/FiltersFrame'
 import { Filters } from '../types/filtersType'
 
@@ -18,7 +17,7 @@ function Tasks() {
         setFilters={setActiveFilters}
         defaultFilters={activeFilters}
       />
-      <TaskList tasks={tasks} filters={activeFilters} />
+      <TaskList filters={activeFilters} />
     </>
   )
 }
