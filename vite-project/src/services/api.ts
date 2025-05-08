@@ -39,7 +39,7 @@ export const TodoAPI = {
   },
 
   // Récupérer un todo par ID
-  getById: async (id: number): Promise<TaskProps> => {
+  getById: async (id: string): Promise<TaskProps> => {
     const response = await fetchWithTimeout(`${API_URL}/tasks/${id}`);
     return handleResponse(response);
   },
@@ -57,7 +57,7 @@ export const TodoAPI = {
   },
 
   // Mettre à jour un todo
-  update: async (id: number, todoData: TaskFormType): Promise<TaskProps> => {
+  update: async (id: string, todoData: TaskFormType): Promise<TaskProps> => {
     const response = await fetchWithTimeout(`${API_URL}/tasks/${id}`, {
       method: 'PUT',
       headers: {
@@ -69,7 +69,7 @@ export const TodoAPI = {
   },
 
   // Supprimer un todo
-  delete: async (id: number): Promise<void> => {
+  delete: async (id: string): Promise<void> => {
     const response = await fetchWithTimeout(`${API_URL}/tasks/${id}`, {
       method: 'DELETE'
     });
@@ -79,7 +79,7 @@ export const TodoAPI = {
   },
 
   // Basculer l'état de complétion d'un todo
-  toggleComplete: async (id: number): Promise<TaskProps> => {
+  toggleComplete: async (id: string): Promise<TaskProps> => {
     const response = await fetchWithTimeout(`${API_URL}/tasks/${id}/toggle`, {
       method: 'PUT',
       headers: {
