@@ -1,15 +1,11 @@
-import { Link } from 'react-router'
-
 function Submit() {
   return (
-    <Link to="/tasks">
-      <button
-        type="submit"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Add Task
-      </button>
-    </Link>
+    <button
+      type="submit"
+      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >
+      Add Task
+    </button>
   )
 }
 
