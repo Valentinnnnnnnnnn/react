@@ -2,13 +2,15 @@ import checkIcon from '../../../assets/icons/checkIcon.svg'
 
 function Complete({
   completed,
-  taskId
+  taskId,
+  onToggleCompeted,
 }: {
   completed: boolean
-  taskId: string
+  taskId: string,
+  onToggleCompeted: (id: string) => void
 }) {
   const checkHandler = async () => {
-    console.log(`Task ${taskId} completed status: ${completed}`)
+    onToggleCompeted(taskId)
   }
 
   return (

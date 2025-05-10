@@ -15,7 +15,7 @@ function Task({task, onDelete, onToggleCompleted}: {task :TaskProps, onDelete: (
         >
           {task.title}
         </h2>
-        <Complete completed={task.completed} taskId={task._id} />
+        <Complete completed={task.completed} taskId={task._id} onToggleCompeted={onToggleCompleted}/>
       </div>
 
       {/* Description */}
@@ -35,7 +35,7 @@ function Task({task, onDelete, onToggleCompleted}: {task :TaskProps, onDelete: (
         </div>
         <div className="flex space-x-3">
           <Edit taskId={task._id} />
-          <Delete taskId={task._id} />
+          <Delete taskId={task._id} onDelete={onDelete}/>
         </div>
       </div>
     </div>

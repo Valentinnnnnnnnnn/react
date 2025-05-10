@@ -1,15 +1,13 @@
 import trashIcon from '../../../assets/icons/trashIcon.svg'
 
-function Delete({ taskId }: { taskId: string }) {
+function Delete({ taskId, onDelete }: { taskId: string, onDelete: (id: string) => void }) {
   const deleteHandler = async () => {
-    const url = `https://api.ex.com/tasks/delete/${taskId}`
-    console.log(url)
-    // Delete task using API
+    onDelete(taskId)
   }
 
   return (
     <button
-      onClick={() => deleteHandler}
+      onClick={deleteHandler}
       className="p-2 hover:bg-gray-100 rounded-full"
       aria-label="Supprimer"
     >
