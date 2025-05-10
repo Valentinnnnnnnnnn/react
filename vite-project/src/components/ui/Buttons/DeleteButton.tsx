@@ -1,6 +1,12 @@
 import trashIcon from '../../../assets/icons/trashIcon.svg'
 
-function Delete({ taskId, onDelete }: { taskId: string, onDelete: (id: string) => void }) {
+function Delete({
+  taskId,
+  onDelete
+}: {
+  taskId: string
+  onDelete: (id: string) => void
+}) {
   const deleteHandler = async () => {
     onDelete(taskId)
   }

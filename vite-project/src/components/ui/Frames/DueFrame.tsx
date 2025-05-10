@@ -1,7 +1,13 @@
-function DueFrame({ due, isComplete }: { due: Date | string; isComplete: boolean }) {
+function DueFrame({
+  due,
+  isComplete
+}: {
+  due: Date | string
+  isComplete: boolean
+}) {
   const now = new Date()
   const dueDate = new Date(due)
-  
+
   const colorClass = isComplete
     ? 'text-gray-500'
     : dueDate < now
@@ -11,7 +17,7 @@ function DueFrame({ due, isComplete }: { due: Date | string; isComplete: boolean
         : 'text-green-500'
 
   const formattedDate =
-  dueDate.toLocaleDateString('fr-FR', {
+    dueDate.toLocaleDateString('fr-FR', {
       day: 'numeric',
       month: 'short',
       year: 'numeric'

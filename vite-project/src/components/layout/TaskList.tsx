@@ -3,16 +3,12 @@ import { useState, useEffect } from 'react'
 import { Filters } from '../../types/filtersType'
 import { Priority } from '../../types/priorityType'
 import { TaskProps } from '../../types/taskType'
-import { useTodos } from '../../hooks/useTasks';
+import { useTodos } from '../../hooks/useTasks'
 
-function TaskList({
-  filters
-}: {
-  filters: Filters
-}) {
-  const { tasks, loading, error, deleteTodo, toggleTodoCompleted } = useTodos();
+function TaskList({ filters }: { filters: Filters }) {
+  const { tasks, loading, error, deleteTodo, toggleTodoCompleted } = useTodos()
   const [filteredTasks, setFilteredTasks] = useState<TaskProps[]>(tasks)
-  
+
   useEffect(() => {
     setFilteredTasks(
       tasks.filter((task) => {
@@ -41,7 +37,8 @@ function TaskList({
     await toggleTodoCompleted(id)
   }
 
-  const tasksBackground = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-amber-50 p-4 rounded-2xl m-4'
+  const tasksBackground =
+    'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-amber-50 p-4 rounded-2xl m-4'
 
   if (loading) {
     return <div className={tasksBackground}>Loading...</div>
@@ -58,7 +55,7 @@ function TaskList({
   return (
     <div className={tasksBackground}>
       {filteredTasks.map((task) => (
-        <Task 
+        <Task
           key={task._id}
           task={task}
           onDelete={handleDeleteTask}

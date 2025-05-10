@@ -1,8 +1,8 @@
-import { Priority } from './priorityType';
+import { Priority } from './priorityType'
 
 export interface TaskFormType {
-    title: string;
-    description?: string;
-    dueDate?: Date;
-    priority: Priority;
+  title: string
+  description?: string
+  dueDate?: Date
+  priority: Priority
 }

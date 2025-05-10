@@ -3,10 +3,10 @@ import checkIcon from '../../../assets/icons/checkIcon.svg'
 function Complete({
   completed,
   taskId,
-  onToggleCompeted,
+  onToggleCompeted
 }: {
   completed: boolean
-  taskId: string,
+  taskId: string
   onToggleCompeted: (id: string) => void
 }) {
   const checkHandler = async () => {
