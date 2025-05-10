@@ -5,7 +5,7 @@ import { TaskProps } from '../../../types/taskType'
 import Delete from '../Buttons/DeleteButton'
 import Edit from '../Buttons/EditButton'
 
-function Task(task: TaskProps) {
+function Task({task, onDelete, onToggleCompleted}: {task :TaskProps, onDelete: (id: string) => void, onToggleCompleted: (id: string) => void}) {
   return (
     <div className="relative flex flex-col bg-white rounded-2xl shadow-md p-6 h-60">
       {/* Header: Title & Checkbox */}
@@ -15,7 +15,7 @@ function Task(task: TaskProps) {
         >
           {task.title}
         </h2>
-        <Complete completed={task.completed} taskId={task.dbId} />
+        <Complete completed={task.completed} taskId={task._id} />
       </div>
 
       {/* Description */}
@@ -34,8 +34,8 @@ function Task(task: TaskProps) {
           <PriorityFrame priority={task.priority} isComplete={task.completed} />
         </div>
         <div className="flex space-x-3">
-          <Edit taskId={task.dbId} />
-          <Delete taskId={task.dbId} />
+          <Edit taskId={task._id} />
+          <Delete taskId={task._id} />
         </div>
       </div>
     </div>
