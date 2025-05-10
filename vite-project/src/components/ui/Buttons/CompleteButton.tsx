@@ -20,6 +20,7 @@ function Complete({
                 flex items-center justify-center
                 w-6 h-6 rounded-full border-2
                 transition-colors duration-150
+                cursor-pointer
                 ${
                   completed
                     ? 'bg-amber-100 border-amber-100 text-white'

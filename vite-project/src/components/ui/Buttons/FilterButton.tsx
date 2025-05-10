@@ -22,7 +22,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
       <button
         onClick={checkHandler}
         className={`flex items-center justify-center
-                    w-6 h-6 rounded-full border-2 transition-colors duration-150
+                    w-6 h-6 rounded-full border-2 transition-colors duration-150 cursor-pointer
                     ${checked ? checkedClasses : uncheckedClasses}`}
       >
         {checked && <img src={checkIcon} alt="check" width={iconWidth} />}

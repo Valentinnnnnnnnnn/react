@@ -6,7 +6,7 @@ function Edit({ taskId }: { taskId: string }) {
     <Link to={'tasks/edit/' + taskId}>
       <button
         onClick={() => console.log(taskId)}
-        className="p-2 hover:bg-gray-100 rounded-full"
+        className="p-2 hover:bg-gray-100 rounded-full cursor-pointer"
         aria-label="Modifier"
       >
         <img src={editIcon} alt="Edit Icon" className="w-5 h-5" />

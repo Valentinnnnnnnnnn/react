@@ -1,8 +1,9 @@
-function Submit() {
+function Submit({isActive}: { isActive: boolean }) {
   return (
     <button
       type="submit"
-      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      disabled={!isActive}
+      className={`bg-green-500 hover:bg-green-600 text-black font-semibold py-3 px-6 rounded-2xl w-40 ${!isActive ? "cursor-not-allowed" : "cursor-pointer"}`}
     >
       Add Task
     </button>

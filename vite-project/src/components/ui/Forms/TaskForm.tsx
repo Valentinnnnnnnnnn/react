@@ -17,6 +17,7 @@ function TaskForm() {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
     const currentDate = new Date()
     const createdTask: TaskProps = {
       _id: '',
@@ -49,7 +50,7 @@ function TaskForm() {
   const setTitleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const titleValue = e.target.value
     setTitle(titleValue)
-    if (!title || titleValue.length < 1) {
+    if (!title || titleValue.length < 2) {
       setIsTitleValid(false)
       return
     }
@@ -83,7 +84,7 @@ function TaskForm() {
           />
           {!isTitleValid && (
             <p className="text-red-500 text-sm mt-1">
-              Title must be at least 1 characters long.
+              Title must be at least 2 characters long.
             </p>
           )}
         </div>
@@ -129,7 +130,7 @@ function TaskForm() {
           />
         </div>
 
-        <Sumbit />
+        <Sumbit isActive={isTitleValid}/>
         <Cancel />
       </form>
     </>
