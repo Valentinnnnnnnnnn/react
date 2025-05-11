@@ -1,44 +1,44 @@
 import { useState, useEffect, useCallback } from 'react'
-import { TodoAPI } from '../services/api'
+import { TaskAPI } from '../services/api'
 import { TaskProps } from '../types/taskType'
 import { TaskFormType } from '../types/taskFormType'
 
-export const useTodos = () => {
-  const [todos, setTodos] = useState<TaskProps[]>([])
+export const useTasks = () => {
+  const [tasks, setTasks] = useState<TaskProps[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Charger les todos
-  const fetchTodos = useCallback(async () => {
+  // Charger les tasks
+  const fetchTasks = useCallback(async () => {
     setLoading(true)
     setError(null)
 
     try {
-      const data = await TodoAPI.getAll()
-      setTodos(data)
+      const data = await TaskAPI.getAll()
+      setTasks(data)
     } catch (err) {
-      console.error('Error fetching todos:', err)
+      console.error('Error fetching tasks:', err)
       setError('Impossible de charger les tâches')
     } finally {
       setLoading(false)
     }
   }, [])
 
-  // Charger les todos au montage du composant
+  // Charger les tasks au montage du composant
   useEffect(() => {
-    fetchTodos()
-  }, [fetchTodos])
+    fetchTasks()
+  }, [fetchTasks])
 
-  // Ajouter un todo
-  const addTodo = async (todoData: TaskFormType) => {
+  // Ajouter un task
+  const addTask = async (taskData: TaskFormType) => {
     setLoading(true)
 
     try {
-      const newTodo = await TodoAPI.create(todoData)
-      setTodos((prevTodos) => [...prevTodos, newTodo])
-      return newTodo
+      const newTask = await TaskAPI.create(taskData)
+      setTasks((prevTasks) => [...prevTasks, newTask])
+      return newTask
     } catch (err) {
-      console.error('Error adding todo:', err)
+      console.error('Error adding task:', err)
       setError("Impossible d'ajouter la tâche")
       throw err
     } finally {
@@ -46,45 +46,45 @@ export const useTodos = () => {
     }
   }
 
-  // Supprimer un todo
-  const deleteTodo = async (id: string) => {
+  // Supprimer un task
+  const deleteTask = async (id: string) => {
     try {
-      await TodoAPI.delete(id)
-      setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id))
+      await TaskAPI.delete(id)
+      setTasks((prevTasks) => prevTasks.filter((task) => task._id !== id))
     } catch (err) {
-      console.error('Error deleting todo:', err)
+      console.error('Error deleting task:', err)
       setError('Impossible de supprimer la tâche')
       throw err
     }
   }
 
-  // Basculer l'état complété d'un todo
-  const toggleTodoCompleted = async (id: string) => {
+  // Basculer l'état complété d'un task
+  const toggleTaskCompleted = async (id: string) => {
     try {
-      const todo = todos.find((t) => t._id === id)
-      if (!todo) throw new Error('Todo not found')
+      const task = tasks.find((t) => t._id === id)
+      if (!task) throw new Error('Task not found')
 
-      const updatedTodo = await TodoAPI.toggleComplete(id)
+      const updatedTask = await TaskAPI.toggleComplete(id)
 
-      setTodos((prevTodos) =>
-        prevTodos.map((todo) => (todo._id === id ? updatedTodo : todo))
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => (task._id === id ? updatedTask : task))
       )
 
-      return updatedTodo
+      return updatedTask
     } catch (err) {
-      console.error('Error toggling todo completion:', err)
+      console.error('Error toggling task completion:', err)
       setError('Impossible de mettre à jour la tâche')
       throw err
     }
   }
 
   return {
-    tasks: todos,
+    tasks: tasks,
     loading,
     error,
-    fetchTodos,
-    addTodo,
-    deleteTodo,
-    toggleTodoCompleted
+    fetchTasks,
+    addTask,
+    deleteTask,
+    toggleTaskCompleted
   }
 }

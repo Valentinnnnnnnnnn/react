@@ -3,34 +3,41 @@ import { TaskProps } from '../../../types/taskType'
 import { Priority } from '../../../types/priorityType'
 import Cancel from '../Buttons/CancelButton'
 import Sumbit from '../Buttons/SubmitButton'
-import { useTodos } from '../../../hooks/useTasks'
+import { useTasks } from '../../../hooks/useTasks'
+import { FormProps } from '../../../types/FormProps'
 
-function TaskForm() {
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [priority, setPriority] = useState('low')
-  const [duedate, setDuedate] = useState('')
+function TaskForm({initialData, isEdit, onSubmit}: FormProps) {
+  // State variables for form fields
+  const [title, setTitle] = useState(initialData.title)
+  const [description, setDescription] = useState(initialData.description)
+  const [priority, setPriority] = useState(initialData.priority)
+  const [duedate, setDuedate] = useState(initialData.dueDate || '')
+
+  // Stata variable for validation message
   const [validation, setValidation] = useState(false)
-  const { addTodo, error } = useTodos()
 
-  const [isTitleValid, setIsTitleValid] = useState(true)
+  // Custom hook to manage tasks
+  const { addTask, error } = useTasks()
+
+  // State variable for title validation
+  const [isTitleValid, setIsTitleValid] = useState(isEdit)
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const currentDate = new Date()
-    const createdTask: TaskProps = {
-      _id: '',
+    const taskData: TaskProps = {
+      _id: initialData._id,
       title: title,
       description: description ? description : undefined,
-      completed: false,
+      completed: initialData.completed,
       dueDate: duedate ? new Date(duedate) : undefined,
       priority: priority as Priority,
-      createdAt: currentDate,
+      createdAt: isEdit ? initialData.createdAt : currentDate,
       updatedAt: currentDate
     }
 
-    addTodo(createdTask)
+    onSubmit(taskData)
 
     // Show success message for 3 seconds
     setValidation(true)
@@ -39,12 +46,14 @@ function TaskForm() {
     }
     , 3000)
 
-    // Reset form fields
-    setTitle('')
-    setDescription('')
-    setPriority('low')
-    setDuedate('')
-    setIsTitleValid(true)
+    // Reset form fields if not in edit mode
+    if (!isEdit) {
+      setTitle('')
+      setDescription('')
+      setPriority(Priority.Low)
+      setDuedate('')
+      setIsTitleValid(true)
+    }
   }
 
   const setTitleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +77,7 @@ function TaskForm() {
       )}
       {validation && (
         <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
-          <strong className="font-bold">Task added successfully!</strong>
+          <strong className="font-bold">{isEdit ? 'Task edited successfully' : 'Task created successfully'} </strong>
         </div>
       )}
       <form onSubmit={submitHandler}>
@@ -125,12 +134,12 @@ function TaskForm() {
           <input
             type="date"
             className="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-            value={duedate}
+            value={duedate ? new Date(duedate).toISOString().split('T')[0] : ''}
             onChange={(e) => setDuedate(e.target.value)}
           />
         </div>
 
-        <Sumbit isActive={isTitleValid}/>
+        <Sumbit isActive={isTitleValid} isEdit={isEdit}/>
         <Cancel />
       </form>
     </>

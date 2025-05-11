@@ -29,55 +29,55 @@ const handleResponse = async (response: Response) => {
   return response.json()
 }
 
-// API Todo
-export const TodoAPI = {
+// API Task
+export const TaskAPI = {
   // Récupérer tous les tasks
   getAll: async (): Promise<TaskProps[]> => {
     const response = await fetchWithTimeout(`${API_URL}/tasks`)
     return handleResponse(response)
   },
 
-  // Récupérer un todo par ID
+  // Récupérer un task par ID
   getById: async (id: string): Promise<TaskProps> => {
     const response = await fetchWithTimeout(`${API_URL}/tasks/${id}`)
     return handleResponse(response)
   },
 
-  // Créer un nouveau todo
-  create: async (todoData: TaskFormType): Promise<TaskProps> => {
+  // Créer un nouveau task
+  create: async (taskData: TaskFormType): Promise<TaskProps> => {
     const response = await fetchWithTimeout(`${API_URL}/tasks`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(todoData)
+      body: JSON.stringify(taskData)
     })
     return handleResponse(response)
   },
 
-  // Mettre à jour un todo
-  update: async (id: string, todoData: TaskFormType): Promise<TaskProps> => {
+  // Mettre à jour un task
+  update: async (id: string, taskData: TaskFormType): Promise<TaskProps> => {
     const response = await fetchWithTimeout(`${API_URL}/tasks/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ ...todoData, id })
+      body: JSON.stringify({ ...taskData, id })
     })
     return handleResponse(response)
   },
 
-  // Supprimer un todo
+  // Supprimer un task
   delete: async (id: string): Promise<void> => {
     const response = await fetchWithTimeout(`${API_URL}/tasks/${id}`, {
       method: 'DELETE'
     })
     if (!response.ok) {
-      throw new Error(`Failed to delete todo with id ${id}`)
+      throw new Error(`Failed to delete task with id ${id}`)
     }
   },
 
-  // Basculer l'état de complétion d'un todo
+  // Basculer l'état de complétion d'un task
   toggleComplete: async (id: string): Promise<TaskProps> => {
     const response = await fetchWithTimeout(`${API_URL}/tasks/${id}/toggle`, {
       method: 'PUT',

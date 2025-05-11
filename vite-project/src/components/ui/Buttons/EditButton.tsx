@@ -3,9 +3,8 @@ import editIcon from '../../../assets/icons/editIcon.svg'
 
 function Edit({ taskId }: { taskId: string }) {
   return (
-    <Link to={'tasks/edit/' + taskId}>
+    <Link to={'/tasks/edit/' + taskId}>
       <button
-        onClick={() => console.log(taskId)}
         className="p-2 hover:bg-gray-100 rounded-full cursor-pointer"
         aria-label="Modifier"
       >

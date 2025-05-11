@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react'
 import { Filters } from '../../types/filtersType'
 import { Priority } from '../../types/priorityType'
 import { TaskProps } from '../../types/taskType'
-import { useTodos } from '../../hooks/useTasks'
+import { useTasks } from '../../hooks/useTasks'
 
 function TaskList({ filters }: { filters: Filters }) {
-  const { tasks, loading, error, deleteTodo, toggleTodoCompleted } = useTodos()
+  const { tasks, loading, error, deleteTask, toggleTaskCompleted } = useTasks()
   const [filteredTasks, setFilteredTasks] = useState<TaskProps[]>(tasks)
 
   useEffect(() => {
@@ -29,12 +29,12 @@ function TaskList({ filters }: { filters: Filters }) {
 
   const handleDeleteTask = async (id: string) => {
     if (window.confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) {
-      await deleteTodo(id)
+      await deleteTask(id)
     }
   }
 
   const handleToggleTaskCompleted = async (id: string) => {
-    await toggleTodoCompleted(id)
+    await toggleTaskCompleted(id)
   }
 
   const tasksBackground =

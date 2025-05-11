@@ -1,52 +1,51 @@
-// src/hooks/useTodo.ts
 import { useState, useEffect } from 'react'
-import { TodoAPI } from '../services/api'
+import { TaskAPI } from '../services/api'
 import { TaskProps } from '../types/taskType'
 import { TaskFormType } from '../types/taskFormType'
 
-export const useTodo = (id?: string) => {
-  const [todo, setTodo] = useState<TaskProps | null>(null)
+export const useTask = (id?: string) => {
+  const [task, setTask] = useState<TaskProps | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Charger un todo par son ID
+  // Charger un task par son ID
   useEffect(() => {
     if (!id) return
 
-    const fetchTodo = async () => {
+    const fetchTask = async () => {
       setLoading(true)
       setError(null)
 
       try {
-        const data = await TodoAPI.getById(id)
-        setTodo(data)
+        const data = await TaskAPI.getById(id)
+        setTask(data)
       } catch (err) {
-        console.error(`Error fetching todo with id ${id}:`, err)
+        console.error(`Error fetching task with id ${id}:`, err)
         setError(`Impossible de charger la tâche #${id}`)
       } finally {
         setLoading(false)
       }
     }
 
-    fetchTodo()
+    fetchTask()
   }, [id])
 
-  // Mettre à jour un todo
-  const updateTodo = async (todoData: TaskFormType) => {
+  // Mettre à jour un task
+  const updateTask = async (taskData: TaskFormType) => {
     if (!id) {
       setError('ID de la tâche manquant')
-      throw new Error('Todo ID is required')
+      throw new Error('Task ID is required')
     }
 
     setLoading(true)
     setError(null)
 
     try {
-      const updatedTodo = await TodoAPI.update(id, todoData)
-      setTodo(updatedTodo)
-      return updatedTodo
+      const updatedTask = await TaskAPI.update(id, taskData)
+      setTask(updatedTask)
+      return updatedTask
     } catch (err) {
-      console.error(`Error updating todo with id ${id}:`, err)
+      console.error(`Error updating task with id ${id}:`, err)
       setError('Impossible de mettre à jour la tâche')
       throw err
     } finally {
@@ -54,5 +53,5 @@ export const useTodo = (id?: string) => {
     }
   }
 
-  return { todo, loading, error, updateTodo }
+  return { task, loading, error, updateTask }
 }
