@@ -1,5 +1,5 @@
 import { useParams } from 'react-router'
-import { TaskProps } from '../types/taskType';
+import { TaskProps } from '../types/taskType'
 import { useTask } from '../hooks/useTask'
 import { useNavigate } from 'react-router'
 import TaskForm from '../components/ui/Forms/TaskForm'
@@ -10,49 +10,49 @@ function Edit() {
   const navigate = useNavigate()
 
   const handleUpdateTask = async (taskData: TaskProps) => {
-      await updateTask(taskData);
-      navigate('/tasks');
-  };
-
+    await updateTask(taskData)
+  }
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[200px]">
         <div className="text-gray-500">Loading...</div>
       </div>
-    );
+    )
   }
 
   if (error) {
     return (
       <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
         <p>{error}</p>
-        <button 
-          onClick={() => navigate('/tasks')} 
+        <button
+          onClick={() => navigate('/tasks')}
           className="mt-2 text-sm underline"
         >
           Back to tasks list
         </button>
       </div>
-    );
+    )
   }
 
   if (!task) {
     return (
       <div className="bg-yellow-50 border border-yellow-200 text-yellow-700 px-4 py-3 rounded">
         <p>Task not found</p>
-        <button 
-          onClick={() => navigate('/tasks')} 
+        <button
+          onClick={() => navigate('/tasks')}
           className="mt-2 text-sm underline"
         >
           Back to tasks list
         </button>
       </div>
-    );
+    )
   }
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-800 mb-4">Modifier la tâche</h1>
+      <h1 className="text-2xl font-bold text-gray-800 mb-4">
+        Edit Task
+      </h1>
       <TaskForm initialData={task} onSubmit={handleUpdateTask} isEdit />
     </div>
   )

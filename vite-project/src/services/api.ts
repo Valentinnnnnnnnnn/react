@@ -20,6 +20,9 @@ const fetchWithTimeout = async (url: string, options?: RequestInit) => {
 
 // Gestionnaire d'erreurs génériques
 const handleResponse = async (response: Response) => {
+  if (response.status === 404) {
+    return null
+  }
   if (!response.ok) {
     const errorData = await response.json().catch(() => null)
     const errorMessage =
