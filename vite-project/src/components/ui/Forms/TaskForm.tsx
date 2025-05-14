@@ -5,6 +5,8 @@ import Cancel from '../Buttons/CancelButton'
 import Sumbit from '../Buttons/SubmitButton'
 import { useTasks } from '../../../hooks/useTasks'
 import { FormProps } from '../../../types/formProps'
+import ErrorMessage from '../Cards/ErrorCard'
+import { useNavigate } from 'react-router'
 
 function TaskForm({ initialData, isEdit, onSubmit }: FormProps) {
   // State variables for form fields
@@ -12,6 +14,9 @@ function TaskForm({ initialData, isEdit, onSubmit }: FormProps) {
   const [description, setDescription] = useState(initialData.description)
   const [priority, setPriority] = useState(initialData.priority)
   const [duedate, setDuedate] = useState(initialData.dueDate || '')
+
+  // hook to manage navigation
+  const navigate = useNavigate()
 
   // Custom hook to manage tasks
   const { error } = useTasks()
@@ -59,12 +64,14 @@ function TaskForm({ initialData, isEdit, onSubmit }: FormProps) {
   return (
     <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-3/4 mx-auto">
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
-          <strong className="font-bold">An error occurred!</strong>
-          <br />
-          <span className="block sm:inline">{error}</span>
-        </div>
-      )}
+            <div className="m-4">
+              <ErrorMessage 
+                message={error} 
+                onRetry={() => navigate(0)} 
+                onDismiss={() => navigate('/tasks')}
+              />
+            </div>
+        )}
       <form onSubmit={submitHandler}>
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2">Title</label>

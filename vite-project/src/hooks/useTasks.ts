@@ -78,6 +78,33 @@ export const useTasks = () => {
     }
   }
 
+  // Basculer l'état complété d'un task (optimiste)
+  const toggleTaskCompletedOptimistic = async (id: string) => {
+    // Trouver le task actuel
+    const taskIndex = tasks.findIndex(t => t._id === id);
+    if (taskIndex === -1) return;
+    
+    const originalTask = tasks[taskIndex];
+    
+    // Mettre à jour localement d'abord (optimiste)
+    setTasks(prev => prev.map(task => 
+      task._id === id ? { ...task, completed: !task.completed } : task
+    ));
+    
+    try {
+      // Faire l'appel API
+      await TaskAPI.toggleComplete(id);
+    } catch (err) {
+      // En cas d'erreur, revenir à l'état précédent
+      setTasks(prev => prev.map(task => 
+        task._id === id ? originalTask : task
+      ));
+      setError('Impossible de mettre à jour la tâche. Veuillez réessayer.');
+      console.error('Error toggling task completion:', err);
+    }
+  };
+
+
   return {
     tasks: tasks,
     loading,
@@ -85,6 +112,7 @@ export const useTasks = () => {
     fetchTasks,
     addTask,
     deleteTask,
-    toggleTaskCompleted
+    toggleTaskCompleted,
+    toggleTaskCompletedOptimistic
   }
 }

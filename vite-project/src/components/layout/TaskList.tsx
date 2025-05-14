@@ -5,10 +5,13 @@ import { Priority } from '../../types/priorityType'
 import { TaskProps } from '../../types/taskType'
 import { useTasks } from '../../hooks/useTasks'
 import { TaskListSkeleton } from '../ui/Skeletons'
+import ErrorMessage from '../ui/Cards/ErrorCard'
+import { useNavigate } from 'react-router'
 
 function TaskList({ filters }: { filters: Filters }) {
-  const { tasks, loading, error, deleteTask, toggleTaskCompleted } = useTasks()
+  const { tasks, loading, error, deleteTask, toggleTaskCompletedOptimistic, fetchTasks } = useTasks()
   const [filteredTasks, setFilteredTasks] = useState<TaskProps[]>(tasks)
+  const navigate = useNavigate()
 
   useEffect(() => {
     setFilteredTasks(
@@ -35,7 +38,7 @@ function TaskList({ filters }: { filters: Filters }) {
   }
 
   const handleToggleTaskCompleted = async (id: string) => {
-    await toggleTaskCompleted(id)
+    await toggleTaskCompletedOptimistic(id)
   }
 
   const tasksBackground =
@@ -45,24 +48,37 @@ function TaskList({ filters }: { filters: Filters }) {
     return <TaskListSkeleton background={tasksBackground} />
   }
 
-  if (error) {
-    return <div className={tasksBackground}>{error}</div>
-  }
-
-  if (filteredTasks.length === 0) {
-    return <div className={tasksBackground}>No tasks found</div>
+  if (filteredTasks.length === 0 && !error) {
+    return (
+            <div className="m-4">
+              <ErrorMessage 
+                message='No tasks found' 
+                onRetry={() => navigate(0)} 
+              />
+            </div>
+            )
   }
 
   return (
-    <div className={tasksBackground}>
-      {filteredTasks.map((task) => (
-        <Task
-          key={task._id}
-          task={task}
-          onDelete={handleDeleteTask}
-          onToggleCompleted={handleToggleTaskCompleted}
-        />
-      ))}
+    <div className=''>
+      {error && (
+            <div className="m-4">
+              <ErrorMessage 
+                message={error} 
+                onRetry={fetchTasks} 
+              />
+            </div>
+        )}
+      <div className={tasksBackground}>
+        {filteredTasks.map((task) => (
+          <Task
+            key={task._id}
+            task={task}
+            onDelete={handleDeleteTask}
+            onToggleCompleted={handleToggleTaskCompleted}
+          />
+        ))}
+      </div>
     </div>
   )
 }

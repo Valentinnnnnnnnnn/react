@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router'
 import { Priority } from '../types/priorityType'
 import { TaskProps } from '../types/taskType'
 import { FormSkeleton } from '../components/ui/Skeletons'
+import ErrorMessage from '../components/ui/Cards/ErrorCard'
 
 function CreateTask() {
   const { error, addTask, loading } = useTasks()
@@ -36,14 +37,12 @@ function CreateTask() {
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
-        <p>{error}</p>
-        <button
-          onClick={() => navigate('/tasks')}
-          className="mt-2 text-sm underline"
-        >
-          Back to tasks list
-        </button>
+      <div className="m-4">
+        <ErrorMessage 
+          message={error}
+          onRetry={() => navigate(0)}
+          onDismiss={() => navigate('/tasks')}
+        />
       </div>
     )
   }
