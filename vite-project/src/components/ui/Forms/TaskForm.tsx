@@ -13,9 +13,6 @@ function TaskForm({ initialData, isEdit, onSubmit }: FormProps) {
   const [priority, setPriority] = useState(initialData.priority)
   const [duedate, setDuedate] = useState(initialData.dueDate || '')
 
-  // Stata variable for validation message
-  const [validation, setValidation] = useState(false)
-
   // Custom hook to manage tasks
   const { error } = useTasks()
 
@@ -25,7 +22,7 @@ function TaskForm({ initialData, isEdit, onSubmit }: FormProps) {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const currentDate= new Date()
+    const currentDate = new Date()
     const taskData: TaskProps = {
       _id: initialData._id,
       title: title,
@@ -36,13 +33,8 @@ function TaskForm({ initialData, isEdit, onSubmit }: FormProps) {
       createdAt: isEdit ? initialData.createdAt : currentDate,
       updatedAt: currentDate
     }
-    onSubmit(taskData)
 
-    // Show validation message
-    setValidation(true)
-    setTimeout(() => {
-      setValidation(false)
-    }, 3000)
+    onSubmit(taskData)
 
     // Reset form fields if not in edit mode
     if (!isEdit) {
@@ -65,21 +57,12 @@ function TaskForm({ initialData, isEdit, onSubmit }: FormProps) {
   }
 
   return (
-    <>
+    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-3/4 mx-auto">
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
           <strong className="font-bold">An error occurred!</strong>
           <br />
           <span className="block sm:inline">{error}</span>
-        </div>
-      )}
-      {validation && (
-        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
-          <strong className="font-bold">
-            {isEdit
-              ? 'Task edited successfully'
-              : 'Task created successfully'}{' '}
-          </strong>
         </div>
       )}
       <form onSubmit={submitHandler}>
@@ -144,7 +127,7 @@ function TaskForm({ initialData, isEdit, onSubmit }: FormProps) {
         <Sumbit isActive={isTitleValid} isEdit={isEdit} />
         <Cancel />
       </form>
-    </>
+    </div>
   )
 }
 

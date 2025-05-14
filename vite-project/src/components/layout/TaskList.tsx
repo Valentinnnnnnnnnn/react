@@ -4,6 +4,7 @@ import { Filters } from '../../types/filtersType'
 import { Priority } from '../../types/priorityType'
 import { TaskProps } from '../../types/taskType'
 import { useTasks } from '../../hooks/useTasks'
+import { TaskListSkeleton } from '../ui/Skeletons'
 
 function TaskList({ filters }: { filters: Filters }) {
   const { tasks, loading, error, deleteTask, toggleTaskCompleted } = useTasks()
@@ -41,7 +42,7 @@ function TaskList({ filters }: { filters: Filters }) {
     'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-amber-50 p-4 rounded-2xl m-4'
 
   if (loading) {
-    return <div className={tasksBackground}>Loading...</div>
+    return <TaskListSkeleton background={tasksBackground} />
   }
 
   if (error) {

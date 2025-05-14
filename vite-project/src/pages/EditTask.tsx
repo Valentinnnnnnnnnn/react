@@ -3,6 +3,7 @@ import { TaskProps } from '../types/taskType'
 import { useTask } from '../hooks/useTask'
 import { useNavigate } from 'react-router'
 import TaskForm from '../components/ui/Forms/TaskForm'
+import { FormSkeleton } from '../components/ui/Skeletons'
 
 function Edit() {
   const { taskId } = useParams()
@@ -12,11 +13,15 @@ function Edit() {
   const handleUpdateTask = async (taskData: TaskProps) => {
     await updateTask(taskData)
   }
+
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-[200px]">
-        <div className="text-gray-500">Loading...</div>
-      </div>
+      <>
+        <h1 className="text-2xl font-bold text-gray-800 mb-4 w-full text-center mt-10">
+          Edit Task
+        </h1>
+        <FormSkeleton />
+      </>
     )
   }
 
@@ -50,7 +55,7 @@ function Edit() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-800 mb-4">
+      <h1 className="text-2xl font-bold text-gray-800 mb-4 w-full text-center mt-10">
         Edit Task
       </h1>
       <TaskForm initialData={task} onSubmit={handleUpdateTask} isEdit />

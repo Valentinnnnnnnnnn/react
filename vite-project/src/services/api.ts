@@ -14,7 +14,7 @@ const timeout = (ms: number) =>
 // Fetch avec timeout pour simuler une latence
 const fetchWithTimeout = async (url: string, options?: RequestInit) => {
   // Simuler une latence de 500ms pour voir les états de chargement
-  await timeout(500)
+  await timeout(1000)
   return fetch(url, options)
 }
 

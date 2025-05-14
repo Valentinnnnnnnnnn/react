@@ -3,9 +3,10 @@ import { useTasks } from '../hooks/useTasks'
 import { useNavigate } from 'react-router'
 import { Priority } from '../types/priorityType'
 import { TaskProps } from '../types/taskType'
+import { FormSkeleton } from '../components/ui/Skeletons'
 
 function CreateTask() {
-  const { error, addTask } = useTasks()
+  const { error, addTask, loading } = useTasks()
   const navigate = useNavigate()
   const task = {
     _id: '',
@@ -19,8 +20,19 @@ function CreateTask() {
   }
 
   const handleCreateTask = async (taskData: TaskProps) => {
-      await addTask(taskData)
-    }
+    await addTask(taskData)
+  }
+
+  if (loading) {
+    return (
+      <>
+        <h1 className="text-2xl font-bold text-gray-800 mb-4 text-center mt-10">
+          Create Task
+        </h1>
+        <FormSkeleton />
+      </>
+    )
+  }
 
   if (error) {
     return (
@@ -38,7 +50,7 @@ function CreateTask() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-800 mb-4">
+      <h1 className="text-2xl font-bold text-gray-800 mb-4 text-center mt-10">
         Create Task
       </h1>
       <TaskForm initialData={task} onSubmit={handleCreateTask} isEdit={false} />
