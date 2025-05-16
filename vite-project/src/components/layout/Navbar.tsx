@@ -5,15 +5,15 @@ import HelloFrame from '../ui/Frames/HelloFrame'
 
 function Navbar() {
   return (
-    <div className="flex items-center justify-between p-4">
-      <div className="w-full flex justify-start space-x-2">
-        <TasksButton />
-        <CreateButton />
-      </div>
-
+    <div className="flex flex-col items-center p-4">
+      <div className="mb-4">
       <HelloFrame />
-
+      </div>
+      <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+      <TasksButton />
+      <CreateButton />
       <LogoutButton />
+      </div>
     </div>
   )
 }
